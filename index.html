@@ -735,7 +735,7 @@ body.loaded .wrap{
         <div class="ctaRow">
           <a class="btn secondary" href="#detaily">Виж детайлите</a>
           <!-- Сложи линк към Google Form по-късно -->
-          <a class="btn disabled" id="surveyBtn" href="#" title="Анкетата ще бъде активирана, когато младоженците са готови.">Анкета за храна (предстои)</a>
+          <a class="btn disabled" id="surveyBtn" href="#" title="https://docs.google.com/forms/d/e/1FAIpQLSenJNwxwraE-jzT5VgXKSEOR1BU5uIhjB8OGX8HBQEV7l6FAQ/viewform?usp=dialog">Анкета</a>
         </div>
       </div>
     </header>
@@ -763,17 +763,6 @@ body.loaded .wrap{
           <ul>
             <li>Потвърждение до края на декември.</li>
             <li>Допълнителна информация ще бъде изпратена по-късно.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Контакт</h3>
-          <p>
-            Ако имате въпроси: (добавете телефон/мейл или човек за контакт)
-          </p>
-          <ul>
-            <li>Телефон: +359 …</li>
-            <li>Имейл: …</li>
           </ul>
         </div>
       </div>
@@ -822,12 +811,13 @@ body.loaded .wrap{
         </div>
 
         <div class="card">
-          <h3>Какви въпроси да има</h3>
+          <h3>Контакт</h3>
+          <p>
+            Ако имате въпроси: (добавете телефон/мейл или човек за контакт)
+          </p>
           <ul>
-            <li>Име + фамилия</li>
-            <li>Ще присъства ли + брой гости</li>
-            <li>Избор на меню (пример: месо/риба/вегетарианско)</li>
-            <li>Алергии</li>
+            <li>Телефон: +359 …</li>
+            <li>Имейл: …</li>
           </ul>
         </div>
       </div>
@@ -854,8 +844,8 @@ body.loaded .wrap{
     if (SURVEY_URL && SURVEY_URL.trim().length > 0) {
       surveyBtn.classList.remove("disabled");
       surveyBtn.href = SURVEY_URL;
-      surveyBtn.title = "Отвори анкетата за храна";
-      surveyBtn.textContent = "Анкета за храна";
+      surveyBtn.title = "Отвори анкетата";
+      surveyBtn.textContent = "Анкета";
     }
 
     /* =========================
