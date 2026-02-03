@@ -41,7 +41,7 @@
       --charcoal:  #313538;
 
       /* Основен “сватбен” фон (в духа на поканата) */
-      --sage: #636f65;
+      --sage: #43b656;
 
       /* Текст */
       --text: rgba(255,255,255,.86);
@@ -371,6 +371,35 @@
       overflow:hidden;
     }
 
+    .colorWheel{
+  display:flex;
+  justify-content:center;
+  padding: 10px 0 30px;
+}
+
+.wheel{
+  position:relative;
+  width:260px;
+  height:260px;
+}
+
+.wheel .swatch{
+  position:absolute;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.wheel .swatch:hover{
+  transform: scale(1.18);
+  z-index:2;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
     .swatches{
       display:grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -400,26 +429,6 @@
       border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 14px 30px rgba(0,0,0,.20);
       flex:none;
-    }
-    .swTxt{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      min-width:0;
-    }
-    .swName{
-      font-weight:600;
-      color: rgba(218,215,200,.95);
-      font-size: 14px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .swHex{
-      color: var(--text2);
-      font-size: 12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
     }
 
     .toast{
@@ -486,7 +495,14 @@
 
         <div class="heroMeta">
           <div class="pill"><strong>21.VIII.26</strong> • Петък</div>
-          <div class="pill"><strong>Bedouin Forest Residence</strong></div>
+          <a class="pill" 
+   href="https://bedouin.bg/" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   style="text-decoration:none;">
+  <strong>Bedouin Forest Residence</strong>
+</a>
+
         </div>
 
         <div class="heroFooter">
@@ -554,9 +570,10 @@
       </p>
 
       <div class="paletteWrap">
-        <div class="paletteRing">
-          <div class="swatches" id="swatches"></div>
-        </div>
+        <div class="colorWheel">
+  <div class="wheel" id="swatches"></div>
+</div>
+
       </div>
     </section>
 
@@ -674,19 +691,25 @@
       }
     }
 
-    palette.forEach(c=>{
-      const el = document.createElement("div");
-      el.className = "swatch";
-      el.innerHTML = `
-        <div class="dot2" style="background:${c.hex}"></div>
-        <div class="swTxt">
-          <div class="swName">${c.name}</div>
-          <div class="swHex">${c.hex}</div>
-        </div>
-      `;
-      el.addEventListener("click", ()=> copyText(c.hex));
-      swatches.appendChild(el);
-    });
+    const radius = 110;
+const center = 130;
+const total = palette.length;
+
+palette.forEach((c, i) => {
+  const angle = (i / total) * Math.PI * 2;
+  const x = center + radius * Math.cos(angle) - 22;
+  const y = center + radius * Math.sin(angle) - 22;
+
+  const el = document.createElement("div");
+  el.className = "swatch";
+  el.style.background = c.hex;
+  el.style.left = x + "px";
+  el.style.top = y + "px";
+
+  el.addEventListener("click", () => copyText(c.hex));
+  swatches.appendChild(el);
+});
+
   </script>
 </body>
 </html>
