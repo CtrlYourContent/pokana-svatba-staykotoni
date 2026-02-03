@@ -348,18 +348,23 @@ body.loaded .wrap{
     /* =========================
        Hero (Invitation Card)
        ========================= */
-    .hero{
-      margin-top:18px;
-      border-radius:var(--radius2);
-      position:relative;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(218,215,200,.22);
-      background:
-        radial-gradient(900px 700px at 50% 35%, rgba(218,215,200,.16), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.25)),
-        rgba(0,0,0,.12);
-    }
+   .hero{
+  margin-top:18px;
+  border-radius:var(--radius2);
+  position:relative;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(218,215,200,.22);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.25),
+      rgba(0,0,0,.55)
+    ),
+    url("assets/hero-bg.jpg") center / cover no-repeat;
+}
+
 
     .heroInner{
       padding:50px 26px 34px;
@@ -975,5 +980,3 @@ palette.forEach((c, i) => {
 </script>
 </body>
 </html>
-
-
