@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Покана за сватба</title>
+  <meta name="description" content="Запазете датата – сватбата на Антония и Стайко" />
+
+  <!-- Fonts (без инсталации) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Marcellus&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       БЪРЗИ НАСТРОЙКИ (Цветове)
+       ========================= */
+    :root{
+      /* Извадени от палитрата ти (HEX) */
+      --ivory:     #dad7c8;
+      --sand:      #c5b68b;
+      --olive:     #504213;
+
+      --mint:      #a9ca9f;
+      --green:     #7bb166;
+      --forest:    #274d1a;
+
+      --aqua:      #abd5d4;
+      --teal:      #74a1a7;
+      --deep-teal: #003843;
+
+      --lilac:     #ccc4db;
+      --violet:    #a699c5;
+      --indigo:    #40306f;
+
+      --blush:     #e6adb6;
+      --rose:      #cf6a78;
+      --wine:      #6a052d;
+
+      --silver:    #c7cacf;
+      --charcoal:  #313538;
+
+      /* Основен “сватбен” фон (в духа на поканата) */
+      --sage: #636f65;
+
+      /* Текст */
+      --text: rgba(255,255,255,.86);
+      --text2: rgba(255,255,255,.68);
+
+      /* Акценти/рамки */
+      --line: rgba(218,215,200,.40); /* ivory with alpha */
+      --line2: rgba(218,215,200,.18);
+      --card: rgba(0,0,0,.18);
+      --card2: rgba(0,0,0,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+      --radius2: 28px;
+    }
+
+    /* =========================
+       Base
+       ========================= */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(171,213,212,.18), transparent 55%),
+        radial-gradient(900px 700px at 85% 35%, rgba(230,173,182,.14), transparent 55%),
+        radial-gradient(1200px 800px at 50% 90%, rgba(204,196,219,.12), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.30)),
+        var(--sage);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{
+      width:min(1100px, calc(100% - 40px));
+      margin:0 auto;
+      padding:28px 0 70px;
+    }
+
+    /* =========================
+       Top mini-nav
+       ========================= */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 14px;
+      border:1px solid var(--line2);
+      border-radius:999px;
+      background:rgba(0,0,0,.14);
+      backdrop-filter: blur(10px);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--text2);
+      user-select:none;
+      white-space:nowrap;
+    }
+    .brand .dot{
+      width:8px; height:8px; border-radius:99px;
+      background: linear-gradient(135deg, var(--ivory), var(--sand));
+      box-shadow:0 0 0 4px rgba(218,215,200,.12);
+      flex:none;
+    }
+    .navlinks{
+      display:flex; flex-wrap:wrap;
+      gap:10px;
+      justify-content:flex-end;
+    }
+    .navlinks a{
+      text-decoration:none;
+      padding:8px 12px;
+      border:1px solid var(--line2);
+      border-radius:999px;
+      background:rgba(0,0,0,.10);
+      color:var(--text2);
+      font-size:13px;
+      transition:.18s ease;
+    }
+    .navlinks a:hover{
+      transform: translateY(-1px);
+      background:rgba(0,0,0,.16);
+      color:var(--text);
+      border-color:var(--line);
+    }
+
+    /* =========================
+       Hero (Invitation Card)
+       ========================= */
+    .hero{
+      margin-top:18px;
+      border-radius:var(--radius2);
+      position:relative;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(218,215,200,.22);
+      background:
+        radial-gradient(900px 700px at 50% 35%, rgba(218,215,200,.16), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.25)),
+        rgba(0,0,0,.12);
+    }
+
+    .heroInner{
+      padding:50px 26px 34px;
+      display:grid;
+      gap:18px;
+      align-items:center;
+      justify-items:center;
+      text-align:center;
+      position:relative;
+    }
+
+    /* Ornamental corners via SVG background */
+    .ornament{
+      position:absolute;
+      inset:0;
+      opacity:.20;
+      pointer-events:none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cg fill='none' stroke='%23DAD7C8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M60 180c60-80 160-120 270-110 70 7 140 42 180 98 22 31 36 70 30 110-7 43-42 76-82 90-58 20-124-6-158-55-28-40-28-93 2-132 34-44 100-54 146-19 34 26 44 76 18 112-20 28-62 34-91 14-22-15-28-45-14-67 12-19 38-24 56-12'/%3E%3Cpath d='M85 260c-18 70-18 155 20 220 35 60 100 104 172 115 86 13 175-22 230-90'/%3E%3Cpath d='M140 160c26 10 54 12 82 8'/%3E%3Cpath d='M160 330c40 25 90 35 138 28'/%3E%3Cpath d='M140 520c35 10 70 10 104 0'/%3E%3Cpath d='M720 180c-60-80-160-120-270-110-70 7-140 42-180 98-22 31-36 70-30 110 7 43 42 76 82 90 58 20 124-6 158-55 28-40 28-93-2-132-34-44-100-54-146-19-34 26-44 76-18 112 20 28 62 34 91 14 22-15 28-45 14-67-12-19-38-24-56-12'/%3E%3Cpath d='M695 260c18 70 18 155-20 220-35 60-100 104-172 115-86 13-175-22-230-90'/%3E%3Cpath d='M640 160c-26 10-54 12-82 8'/%3E%3Cpath d='M620 330c-40 25-90 35-138 28'/%3E%3Cpath d='M640 520c-35 10-70 10-104 0'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 120% 120%;
+      background-position: center;
+      filter: blur(.2px);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid var(--line2);
+      background:rgba(0,0,0,.16);
+      border-radius:999px;
+      padding:10px 14px;
+      color:var(--text2);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:12px;
+    }
+    .badge span{
+      width:6px; height:6px; border-radius:99px;
+      background:var(--ivory);
+      opacity:.9;
+    }
+
+    .titleSmall{
+      font-family: Marcellus, serif;
+      font-size: clamp(18px, 2vw, 22px);
+      letter-spacing:.08em;
+      color: rgba(0,0,0,.55);
+      text-transform:uppercase;
+      margin-top:8px;
+      opacity:.75;
+      filter: invert(1) grayscale(.2);
+    }
+
+    .names{
+      font-family: "Cormorant Garamond", serif;
+      font-weight:600;
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: .95;
+      letter-spacing:.02em;
+      margin: 6px 0 10px;
+      color: var(--ivory);
+      text-shadow: 0 10px 30px rgba(0,0,0,.30);
+    }
+    .names .and{
+      display:block;
+      font-size: clamp(18px, 2.2vw, 24px);
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      color: rgba(218,215,200,.70);
+      margin: 10px 0 8px;
+    }
+
+    .heroMeta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:8px;
+    }
+    .pill{
+      border:1px solid var(--line2);
+      background:rgba(0,0,0,.16);
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:14px;
+      color: var(--text);
+      backdrop-filter: blur(8px);
+    }
+    .pill strong{font-weight:600}
+
+    .heroFooter{
+      margin-top:16px;
+      color: var(--text2);
+      font-size: 14px;
+      line-height:1.5;
+      max-width: 62ch;
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:18px;
+    }
+    .btn{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(218,215,200,.18), rgba(0,0,0,.14));
+      color: var(--ivory);
+      padding: 12px 16px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      letter-spacing:.02em;
+      transition:.18s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,.20);
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.04); }
+    .btn.secondary{
+      background: rgba(0,0,0,.16);
+      color: var(--text);
+      border-color: var(--line2);
+      font-weight:500;
+    }
+    .btn.disabled{
+      opacity:.55;
+      pointer-events:none;
+      filter: grayscale(.2);
+    }
+
+    /* =========================
+       Sections
+       ========================= */
+    section{
+      margin-top:18px;
+      border:1px solid var(--line2);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.14);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.20);
+      overflow:hidden;
+    }
+
+    .secHead{
+      padding:18px 18px 0;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    h2{
+      margin:0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      letter-spacing:.02em;
+      color: var(--ivory);
+    }
+    .subtitle{
+      margin:10px 0 0;
+      color: var(--text2);
+      font-size:14px;
+      line-height:1.6;
+      max-width: 70ch;
+      padding:0 18px 18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      padding: 0 18px 18px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      border:1px solid var(--line2);
+      background: rgba(0,0,0,.14);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color: rgba(218,215,200,.85);
+      font-weight:600;
+    }
+    .card p, .card li{
+      margin: 0;
+      color: var(--text2);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .card ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    /* =========================
+       Palette showcase (интересно)
+       ========================= */
+    .paletteWrap{
+      padding: 0 18px 18px;
+      display:grid;
+      gap:14px;
+      grid-template-columns: 1fr;
+    }
+
+    .paletteRing{
+      border:1px solid var(--line2);
+      border-radius: 22px;
+      background: rgba(0,0,0,.12);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .swatches{
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 860px){
+      .swatches{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    .swatch{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+      padding: 12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      cursor:pointer;
+      transition:.18s ease;
+      user-select:none;
+    }
+    .swatch:hover{ transform: translateY(-2px); border-color: rgba(218,215,200,.35); }
+    .dot2{
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 14px 30px rgba(0,0,0,.20);
+      flex:none;
+    }
+    .swTxt{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:0;
+    }
+    .swName{
+      font-weight:600;
+      color: rgba(218,215,200,.95);
+      font-size: 14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .swHex{
+      color: var(--text2);
+      font-size: 12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.70);
+      border: 1px solid rgba(218,215,200,.25);
+      color: var(--ivory);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .22s ease;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+    }
+    .toast.show{ opacity: 1; transform: translateX(-50%) translateY(-6px); }
+
+    /* =========================
+       Footer
+       ========================= */
+    footer{
+      margin-top:18px;
+      padding: 16px 10px 0;
+      color: rgba(255,255,255,.55);
+      text-align:center;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span> Покана • Сватба</div>
+      <div class="navlinks">
+        <a href="#detaily">Детайли</a>
+        <a href="#palitra">Цветове</a>
+        <a href="#anketa">Анкета</a>
+      </div>
+    </div>
+
+    <!-- =========================
+         HERO (ПОКАНАТА НАЙ-ГОРЕ)
+         ========================= -->
+    <header class="hero" id="top">
+      <div class="ornament" aria-hidden="true"></div>
+
+      <div class="heroInner">
+        <div class="badge"><span></span> Запазете датата</div>
+
+        <!-- ======= БЪРЗИ НАСТРОЙКИ (текстове) ======= -->
+        <div class="titleSmall">Сватбата на</div>
+        <div class="names">
+          Антония
+          <span class="and">и</span>
+          Стайко
+        </div>
+
+        <div class="heroMeta">
+          <div class="pill"><strong>21.VIII.26</strong> • Петък</div>
+          <div class="pill"><strong>Bedouin Forest Residence</strong></div>
+        </div>
+
+        <div class="heroFooter">
+          Моля, потвърдете присъствието си до края на декември.
+          <br>(Очаквайте допълнителна информация.)
+        </div>
+
+        <div class="ctaRow">
+          <a class="btn secondary" href="#detaily">Виж детайлите</a>
+          <!-- Сложи линк към Google Form по-късно -->
+          <a class="btn disabled" id="surveyBtn" href="#" title="Анкетата ще бъде активирана, когато младоженците са готови.">Анкета за храна (предстои)</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================
+         ДЕТАЙЛИ
+         ========================= -->
+    <section id="detaily">
+      <div class="secHead">
+        <h2>Детайли</h2>
+      </div>
+      <p class="subtitle">
+        Тук държим всичко кратко, ясно и красиво. По-късно можем да добавим: програма по часове, дрескод, транспорт,
+        настаняване, карта, FAQ и т.н.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Кога и къде</h3>
+          <p>
+            <strong>Дата:</strong> 21.VIII.2026 (Петък)<br>
+            <strong>Място:</strong> Bedouin Forest Residence<br>
+            <strong>Начало:</strong> (добавете час, когато го имате)
+          </p>
+          <ul>
+            <li>Потвърждение до края на декември.</li>
+            <li>Допълнителна информация ще бъде изпратена по-късно.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Контакт</h3>
+          <p>
+            Ако имате въпроси: (добавете телефон/мейл или човек за контакт)
+          </p>
+          <ul>
+            <li>Телефон: +359 …</li>
+            <li>Имейл: …</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         ПАЛИТРА (ПО-ИНТЕРЕСНО)
+         ========================= -->
+    <section id="palitra">
+      <div class="secHead">
+        <h2>Сватбените цветове</h2>
+      </div>
+      <p class="subtitle">
+        Натисни върху цвят, за да копираш HEX кода (ако някой прави декорация/облекло/дизайн).
+        Можем да добавим и “идея за дрескод” по тези тонове, ако искате.
+      </p>
+
+      <div class="paletteWrap">
+        <div class="paletteRing">
+          <div class="swatches" id="swatches"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         АНКЕТА (PLACEHOLDER)
+         ========================= -->
+    <section id="anketa">
+      <div class="secHead">
+        <h2>Анкета за храна</h2>
+      </div>
+      <p class="subtitle">
+        Засега бутонът е “предстои”. Когато младоженците дадат информацията, правим Google Form и само поставяме линка тук.
+        Ако предпочитате, можем да embed-нем формата директно в страницата.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Как ще стане</h3>
+          <ul>
+            <li>Създавате Google Form (2–3 мин).</li>
+            <li>Копираш линка и го слагаш в настройката долу (в JS).</li>
+            <li>Бутонът автоматично става активен.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Какви въпроси да има</h3>
+          <ul>
+            <li>Име + фамилия</li>
+            <li>Ще присъства ли + брой гости</li>
+            <li>Избор на меню (пример: месо/риба/вегетарианско)</li>
+            <li>Алергии</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 • Покана сайт • GitHub Pages
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast">Копирано ✨</div>
+
+  <script>
+    /* =========================
+       НАСТРОЙКА НА АНКЕТАТА
+       =========================
+       Когато имате линк към Google Form, сложете го тук:
+       const SURVEY_URL = "https://forms.gle/.....";
+    */
+    const SURVEY_URL = ""; // остави празно докато нямате анкета
+
+    const surveyBtn = document.getElementById("surveyBtn");
+    if (SURVEY_URL && SURVEY_URL.trim().length > 0) {
+      surveyBtn.classList.remove("disabled");
+      surveyBtn.href = SURVEY_URL;
+      surveyBtn.title = "Отвори анкетата за храна";
+      surveyBtn.textContent = "Анкета за храна";
+    }
+
+    /* =========================
+       ПАЛИТРА – интерактивни swatches
+       ========================= */
+    const palette = [
+      { name: "Ivory",     hex: "#dad7c8" },
+      { name: "Sand",      hex: "#c5b68b" },
+      { name: "Olive",     hex: "#504213" },
+
+      { name: "Mint",      hex: "#a9ca9f" },
+      { name: "Green",     hex: "#7bb166" },
+      { name: "Forest",    hex: "#274d1a" },
+
+      { name: "Aqua",      hex: "#abd5d4" },
+      { name: "Teal",      hex: "#74a1a7" },
+      { name: "Deep Teal", hex: "#003843" },
+
+      { name: "Lilac",     hex: "#ccc4db" },
+      { name: "Violet",    hex: "#a699c5" },
+      { name: "Indigo",    hex: "#40306f" },
+
+      { name: "Blush",     hex: "#e6adb6" },
+      { name: "Rose",      hex: "#cf6a78" },
+      { name: "Wine",      hex: "#6a052d" },
+
+      { name: "Silver",    hex: "#c7cacf" },
+      { name: "Charcoal",  hex: "#313538" }
+    ];
+
+    const swatches = document.getElementById("swatches");
+    const toast = document.getElementById("toast");
+    let toastTimer = null;
+
+    function showToast(text){
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>toast.classList.remove("show"), 1200);
+    }
+
+    async function copyText(txt){
+      try{
+        await navigator.clipboard.writeText(txt);
+        showToast("Копирано: " + txt);
+      }catch(e){
+        // fallback
+        const t = document.createElement("textarea");
+        t.value = txt;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand("copy");
+        t.remove();
+        showToast("Копирано: " + txt);
+      }
+    }
+
+    palette.forEach(c=>{
+      const el = document.createElement("div");
+      el.className = "swatch";
+      el.innerHTML = `
+        <div class="dot2" style="background:${c.hex}"></div>
+        <div class="swTxt">
+          <div class="swName">${c.name}</div>
+          <div class="swHex">${c.hex}</div>
+        </div>
+      `;
+      el.addEventListener("click", ()=> copyText(c.hex));
+      swatches.appendChild(el);
+    });
+  </script>
+</body>
+</html>
