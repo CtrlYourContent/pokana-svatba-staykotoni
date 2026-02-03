@@ -12,6 +12,218 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Marcellus&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== INTRO OVERLAY ===== */
+/* ===== INTRO ===== */
+/* ===== FULLSCREEN PORTAL BACKGROUND ===== */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  background:
+    radial-gradient(circle at center, rgba(120,180,255,.25), rgba(0,0,0,.85)),
+    url("assets/portal-bg.png") center / cover no-repeat;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+
+  transition:opacity 1.8s ease, visibility 1.8s ease;
+}
+
+#intro.hidden{
+  opacity:0;
+  visibility:hidden;
+}
+.portal-content{
+  text-align:center;
+  z-index:2;
+  animation: fadeInUp 2.2s ease forwards;
+}
+
+.intro-text{
+  font-family:"Cormorant Garamond", serif;
+  font-size:clamp(32px,5vw,60px);
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:#eaf2ff;
+  margin-bottom:40px;
+  text-shadow:
+    0 0 20px rgba(150,200,255,.5),
+    0 0 60px rgba(150,200,255,.35);
+}
+
+#enterBtn{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(180,220,255,.7);
+  color:#eaf2ff;
+  padding:18px 44px;
+  font-size:14px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  border-radius:999px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+
+  box-shadow:
+    0 0 25px rgba(180,220,255,.45),
+    0 0 80px rgba(120,180,255,.35);
+
+  transition:.35s ease;
+}
+
+#enterBtn:hover{
+  background:rgba(180,220,255,.18);
+  transform:scale(1.1);
+}
+
+/* ===== FOG ===== */
+.fog{
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(200,220,255,.10), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(200,220,255,.08), transparent 45%);
+  animation:fogMove 22s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes fogMove{
+  from{transform:translateX(-6%)}
+  to{transform:translateX(6%)}
+}
+
+/* ===== PORTAL WRAP ===== */
+.portal-wrap{
+  position:relative;
+  text-align:center;
+  z-index:2;
+}
+
+/* ===== TITLE ===== */
+.intro-text{
+  font-family:"Cormorant Garamond", serif;
+  font-size:clamp(28px,4vw,48px);
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:#dbe6ff;
+  margin-bottom:30px;
+  opacity:0;
+  animation:fadeIn 2.5s ease forwards;
+  transform: translateY(-180px);
+}
+
+/* ===== PORTAL ===== */
+.portal{
+  position:relative;
+  display:inline-block;
+  opacity:0;
+  animation:fadeIn 3s ease forwards;
+  animation-delay:1.2s;
+}
+
+.portal img{
+  max-width:320px;
+  width:70vw;
+  height:auto;
+  filter:
+    drop-shadow(0 0 25px rgba(120,180,255,.45))
+    drop-shadow(0 0 60px rgba(120,180,255,.25));
+}
+
+/* ===== BUTTON ===== */
+#enterBtn{
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:220px;
+  height:54px;
+  background:rgba(0,0,0,.55);
+  border:1px solid rgba(180,220,255,.6);
+  color:#e6f0ff;
+  font-size:13px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  border-radius:999px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+  transition:.35s ease;
+  top: 200%;
+}
+
+#enterBtn:hover{
+  background:rgba(180,220,255,.18);
+  box-shadow:
+    0 0 30px rgba(180,220,255,.6),
+    0 0 80px rgba(180,220,255,.4);
+  transform:scale(1.08);
+}
+
+/* ===== PAGE ===== */
+.wrap{
+  opacity:0;
+}
+
+body.loaded .wrap{
+  animation:pageFade 1.8s ease forwards;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes pageFade{
+  to{opacity:1;}
+}
+
+
+
+#enterBtn{
+  background: linear-gradient(180deg, rgba(218,215,200,.25), rgba(0,0,0,.4));
+  border:1px solid rgba(218,215,200,.5);
+  color: var(--ivory);
+  padding:18px 34px;
+  border-radius:999px;
+  font-size:14px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  transition:.3s ease;
+}
+
+#enterBtn:hover{
+  transform: scale(1.08);
+  box-shadow:0 30px 90px rgba(0,0,0,.85);
+}
+
+/* ===== PAGE FADE-IN ===== */
+body.loaded .wrap{
+  animation: pageFade 1.4s ease forwards;
+}
+
+.wrap{
+  opacity:0;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes fadeInUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:none;}
+}
+
+@keyframes pageFade{
+  to{opacity:1;}
+}
+
     /* =========================
        БЪРЗИ НАСТРОЙКИ (Цветове)
        ========================= */
@@ -463,7 +675,18 @@
   </style>
 </head>
 
-<body>
+<div id="intro">
+  <div class="fog"></div>
+
+  <div class="portal-content">
+    <div class="intro-text">Кажи приятел и Влез</div>
+    <button id="enterBtn">ОТВОРИ ПОКАНАТА</button>
+  </div>
+</div>
+
+
+
+
   <div class="wrap">
 
     <!-- Topbar -->
@@ -483,7 +706,7 @@
       <div class="ornament" aria-hidden="true"></div>
 
       <div class="heroInner">
-        <div class="badge"><span></span> Запазете датата</div>
+        <div class="badge"><span></span> ПОКАНА </div>
 
         <!-- ======= БЪРЗИ НАСТРОЙКИ (текстове) ======= -->
         <div class="titleSmall">Сватбата на</div>
@@ -506,8 +729,7 @@
         </div>
 
         <div class="heroFooter">
-          Моля, потвърдете присъствието си до края на декември.
-          <br>(Очаквайте допълнителна информация.)
+          Моля, попълнете анкетата до края на февруари!
         </div>
 
         <div class="ctaRow">
@@ -626,7 +848,7 @@
        Когато имате линк към Google Form, сложете го тук:
        const SURVEY_URL = "https://forms.gle/.....";
     */
-    const SURVEY_URL = ""; // остави празно докато нямате анкета
+    const SURVEY_URL = "https://docs.google.com/forms/d/e/1FAIpQLSenJNwxwraE-jzT5VgXKSEOR1BU5uIhjB8OGX8HBQEV7l6FAQ/viewform?usp=dialog"; // остави празно докато нямате анкета
 
     const surveyBtn = document.getElementById("surveyBtn");
     if (SURVEY_URL && SURVEY_URL.trim().length > 0) {
@@ -710,6 +932,30 @@ palette.forEach((c, i) => {
   swatches.appendChild(el);
 });
 
+
   </script>
+  <audio id="bgMusic" loop>
+  <source src="assets/wedding-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById("bgMusic");
+const intro = document.getElementById("intro");
+const enterBtn = document.getElementById("enterBtn");
+
+music.volume = 0.45; // епично, но не агресивно
+
+enterBtn.addEventListener("click", () => {
+  // Пускаме музиката (user interaction ✔️)
+  music.play();
+
+  // Скриваме интрото
+  intro.classList.add("hidden");
+
+  // Показваме сайта
+  document.body.classList.add("loaded");
+});
+
+</script>
 </body>
 </html>
