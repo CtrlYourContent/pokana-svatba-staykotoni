@@ -930,21 +930,47 @@ palette.forEach((c, i) => {
 
 <script>
   const music = document.getElementById("bgMusic");
-const intro = document.getElementById("intro");
-const enterBtn = document.getElementById("enterBtn");
+  const intro = document.getElementById("intro");
+  const enterBtn = document.getElementById("enterBtn");
 
-music.volume = 0.45; // епично, но не агресивно
+  // стартово ниво (епично)
+  const START_VOLUME = 0.45;
+  // крайно фоново ниво
+  const TARGET_VOLUME = 0.18;
 
-enterBtn.addEventListener("click", () => {
-  // Пускаме музиката (user interaction ✔️)
-  music.play();
+  music.volume = START_VOLUME;
+  music.loop = true;
 
-  // Скриваме интрото
-  intro.classList.add("hidden");
+  enterBtn.addEventListener("click", () => {
+    // пускаме музиката (user interaction ✔️)
+    music.play().catch(() => {});
 
-  // Показваме сайта
-  document.body.classList.add("loaded");
-});
+    // скриваме интрото
+    intro.classList.add("hidden");
+    document.body.classList.add("loaded");
+
+    // след 6 секунди започва fade-down
+    setTimeout(() => {
+      fadeVolume(music, TARGET_VOLUME, 4000);
+    }, 6000);
+  });
+
+  function fadeVolume(audio, target, duration) {
+    const stepTime = 50;
+    const steps = duration / stepTime;
+    const volumeStep = (audio.volume - target) / steps;
+
+    const fade = setInterval(() => {
+      audio.volume = Math.max(target, audio.volume - volumeStep);
+
+      if (audio.volume <= target) {
+        audio.volume = target;
+        clearInterval(fade);
+      }
+    }, stepTime);
+  }
+</script>
+
 
 </script>
 </body>
