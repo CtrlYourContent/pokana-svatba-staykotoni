@@ -36,10 +36,38 @@
   opacity:0;
   visibility:hidden;
 }
+.sound-hint{
+  margin: 26px 0 32px;
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 18px;            /* ⬅️ по-голям основен текст */
+  letter-spacing: .06em;
+  color: rgba(235,245,255,.95);
+  text-align: center;
+  line-height: 1.7;
+
+  text-shadow:
+    0 0 14px rgba(140,190,255,.35),
+    0 0 32px rgba(90,140,255,.25);
+
+  animation: fadeInUp 2.6s ease forwards;
+  opacity: 0;
+}
+
+.sound-hint span{
+  display:block;
+  margin-top:6px;
+  font-size:15px;             /* ⬅️ под-текстът също по-голям */
+  opacity:.75;
+  letter-spacing:.08em;
+}
+
+
 .portal-content{
   text-align:center;
   z-index:2;
   animation: fadeInUp 2.2s ease forwards;
+  
 }
 
 .intro-text{
@@ -275,17 +303,53 @@ body.loaded .wrap{
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(171,213,212,.18), transparent 55%),
-        radial-gradient(900px 700px at 85% 35%, rgba(230,173,182,.14), transparent 55%),
-        radial-gradient(1200px 800px at 50% 90%, rgba(204,196,219,.12), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.30)),
-        var(--sage);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      overflow-x:hidden;
-    }
+  margin:0;
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow-x:hidden;
+  position:relative;
+  background: none; /* махаме плоския фон */
+}
+
+/* ===== GLOBAL BACKGROUND LAYER ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.06),
+      rgba(0,0,0,.35)
+    ),
+    linear-gradient(
+      180deg,
+      #3fa95b,
+      #2f7d47
+    );
+
+  transform: scale(1.05); /* предотвратява cut при zoom */
+}
+
+/* ===== SUBTLE VIGNETTE ===== */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 55%,
+      rgba(0,0,0,.25)
+    );
+}
+
+
 
     a{color:inherit}
     .wrap{
@@ -419,16 +483,25 @@ body.loaded .wrap{
       filter: invert(1) grayscale(.2);
     }
 
-    .names{
-      font-family: "Cormorant Garamond", serif;
-      font-weight:600;
-      font-size: clamp(48px, 6vw, 82px);
-      line-height: .95;
-      letter-spacing:.02em;
-      margin: 6px 0 10px;
-      color: var(--ivory);
-      text-shadow: 0 10px 30px rgba(0,0,0,.30);
-    }
+.names{
+  position: relative;
+
+  font-family: "Cormorant Garamond", serif;
+  font-weight:600;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: .95;
+  letter-spacing:.02em;
+  margin: 6px 0 10px;
+  color: var(--ivory);
+
+  text-shadow:
+    0 0 18px rgba(218,215,200,.35),
+    0 0 38px rgba(218,215,200,.25),
+    0 10px 30px rgba(0,0,0,.35);
+
+  animation: nameGlow 6s ease-in-out infinite;
+}
+
     .names .and{
       display:block;
       font-size: clamp(18px, 2.2vw, 24px);
@@ -437,6 +510,7 @@ body.loaded .wrap{
       color: rgba(218,215,200,.70);
       margin: 10px 0 8px;
     }
+    
 
     .heroMeta{
       display:flex;
@@ -680,9 +754,241 @@ body.loaded .wrap{
     /* ===== MOBILE HERO FIX ===== */
 @media (max-width: 768px) {
   .hero {
-    background-position: 60% center;
+    background-position: 70% center;
   }
 }
+/* ===== SURVEY CTA ===== */
+.surveyWrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+  padding: 10px 0 30px;
+}
+
+.surveyHint{
+  font-size:22px;
+  opacity:.6;
+  animation: bounce 2.2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{ transform:translateY(0); opacity:.5 }
+  50%{ transform:translateY(6px); opacity:.85 }
+}
+
+.surveyBtn{
+  position:relative;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+
+  padding:16px 26px;
+  border-radius:999px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(218,215,200,.30),
+    rgba(0,0,0,.30)
+  );
+
+  border:1px solid rgba(218,215,200,.55);
+  color:var(--ivory);
+  text-decoration:none;
+
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.04em;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.45),
+    0 0 0 0 rgba(218,215,200,.35);
+
+  transition:.25s ease;
+}
+
+.surveyBtn span{
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:.08em;
+  color:rgba(218,215,200,.75);
+}
+
+.surveyBtn:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 24px 65px rgba(0,0,0,.6),
+    0 0 0 8px rgba(218,215,200,.12);
+}
+/* ===== CENTERED SECTIONS (Palette + Survey) ===== */
+#palitra h2,
+#anketa h2{
+  text-align:center;
+}
+
+#palitra .subtitle,
+#anketa .subtitle{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Центрираме съдържанието визуално */
+#palitra .paletteWrap,
+#anketa .surveyWrap{
+  justify-items:center;
+  text-align:center;
+}
+
+/* Контакт – заглавието център, съдържанието четимо */
+#anketa .card h3{
+  text-align:center;
+}
+
+#anketa .card ul{
+  margin: 12px auto 0;
+  max-width: 420px;
+  text-align:left; /* важно – не центрираме телефони */
+}
+/* ===== CENTER SECTION HEADERS ===== */
+.secHead{
+  justify-content:center;
+  text-align:center;
+}
+
+.secHead h2{
+  width:100%;
+  text-align:center;
+}
+
+/* Подзаглавия под табовете */
+.subtitle{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Малко по-церемониално усещане */
+.secHead h2::after{
+  content:"";
+  display:block;
+  width:48px;
+  height:1px;
+  margin:12px auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(218,215,200,.6),
+    transparent
+  );
+}
+/* ===== CENTER "КОГА И КЪДЕ" CARD ===== */
+.card{
+  text-align:center;
+}
+
+.card h3{
+  text-align:center;
+}
+
+/* декоративна линия под заглавието */
+.card h3::after{
+  content:"";
+  display:block;
+  width:42px;
+  height:1px;
+  margin:10px auto 14px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(218,215,200,.6),
+    transparent
+  );
+}
+
+/* параграфа с дата / място */
+.card p{
+  text-align:center;
+}
+
+/* списъка с точките */
+.card ul{
+  list-style:none;
+  padding-left:0;
+  margin-top:12px;
+}
+
+.card ul li{
+  position:relative;
+  padding-left:0;
+  margin:6px 0;
+}
+
+/* малка точка вместо bullet */
+.card ul li::before{
+  content:"•";
+  margin-right:6px;
+  color: rgba(218,215,200,.75);
+}
+
+/* ===== CENTER SINGLE CARD IN DETAILS ===== */
+#detaily .grid{
+  display:flex;
+  justify-content:center;
+}
+
+#detaily .card{
+  max-width:520px;   /* контролира ширината */
+  width:100%;
+}
+.noteBox{
+  margin-top:18px;
+  padding:14px 16px;
+  border-radius:14px;
+  background: rgba(218,215,200,.08);
+  border: 1px dashed rgba(218,215,200,.35);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.noteBox strong{
+  display:block;
+  margin-bottom:6px;
+  color: var(--ivory);
+  letter-spacing:.04em;
+}
+
+.noteBox p{
+  margin:6px 0 0;
+  opacity:.85;
+}
+@keyframes nameGlow{
+  0%,100%{
+    text-shadow:
+      0 0 14px rgba(218,215,200,.25),
+      0 0 30px rgba(218,215,200,.20),
+      0 10px 30px rgba(0,0,0,.35);
+  }
+  50%{
+    text-shadow:
+      0 0 24px rgba(218,215,200,.55),
+      0 0 60px rgba(218,215,200,.35),
+      0 14px 40px rgba(0,0,0,.45);
+  }
+}
+@keyframes softGlow {
+  0%,100% { opacity:.85 }
+  50% { opacity:1 }
+}
+
+.sound-hint{
+  animation:
+    fadeInUp 2.6s ease forwards,
+    softGlow 6s ease-in-out infinite;
+}
+
+
 
   </style>
 </head>
@@ -692,6 +998,11 @@ body.loaded .wrap{
 
   <div class="portal-content">
     <div class="intro-text">Кажи приятел и Влез</div>
+    <div class="sound-hint">
+  Включете звука…<br>
+  <span>но внимателно!</span>
+</div>
+
     <button id="enterBtn">ОТВОРИ ПОКАНАТА</button>
   </div>
 </div>
@@ -770,12 +1081,36 @@ body.loaded .wrap{
           <p>
             <strong>Дата:</strong> 21.VIII.2026 (Петък)<br>
             <strong>Място:</strong> Bedouin Forest Residence<br>
-            <strong>Начало:</strong> (добавете час, когато го имате)
+            <strong>Начало:</strong> 15:00
           </p>
           <ul>
-            <li>Потвърждение до края на декември.</li>
-            <li>Допълнителна информация ще бъде изпратена по-късно.</li>
+            <li>
+        <strong>15:00</strong> – Църковен брак –
+        <a
+          href="https://maps.app.goo.gl/tpipmjzPWFbGrdWb8"
+          target="_blank"
+          rel="noopener"
+          class="placeLink"
+        >
+          Храм „Свети Великомъченик Димитрий Солунски“
+        </a>
+      </li>
+            <li>16:00 - Welcome drink - Ривендел - Тук елфите танцуват, хобитите наливат!</li>
+            <li>17:30 - Изнесен ритуал - Гондор - Където Пръстенът е символ, не проблем.</li>
+            <li>19:00 - Вечеря последно приключение - "Скокливото пони" - "Внимавай: тук се пие като за последно приключение."</li>
           </ul>
+          <div class="noteBox">
+  <strong>Малък, но важен детайл</strong>
+  <p>
+    Тържеството ще е на открито и ще продължи до късно –<br>
+    вземете си <b>връхна дреха</b>, за да не търсите огън от дракон!
+  </p>
+  <p>
+    Препоръчваме и <b>удобни обувки</b> –<br>
+    тревата е зелена, танците са дълги, а приключението няма пауза!
+  </p>
+</div>
+
         </div>
       </div>
     </section>
@@ -803,40 +1138,47 @@ body.loaded .wrap{
     <!-- =========================
          АНКЕТА (PLACEHOLDER)
          ========================= -->
-    <section id="anketa">
-      <div class="secHead">
-        <h2>Анкета за храна</h2>
-      </div>
-      <p class="subtitle">
-        Засега бутонът е “предстои”. Когато младоженците дадат информацията, правим Google Form и само поставяме линка тук.
-        Ако предпочитате, можем да embed-нем формата директно в страницата.
-      </p>
+    <!-- =========================
+     АНКЕТА
+     ========================= -->
+<section id="anketa">
+  <div class="secHead">
+    <h2>Анкета</h2>
+  </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Как ще стане</h3>
-          <ul>
-            <li>Създавате Google Form (2–3 мин).</li>
-            <li>Копираш линка и го слагаш в настройката долу (в JS).</li>
-            <li>Бутонът автоматично става активен.</li>
-          </ul>
-        </div>
+  <p class="subtitle">
+    Молим ви да отделите 2–3 минути и да попълните анкетата.
+    Това ще ни помогне да се погрижим за всеки гост.
+  </p>
 
+  <div class="surveyWrap">
+    <div class="surveyHint">
+      ⬇
+    </div>
+
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSenJNwxwraE-jzT5VgXKSEOR1BU5uIhjB8OGX8HBQEV7l6FAQ/viewform?usp=dialog"
+      target="_blank"
+      rel="noopener"
+      class="surveyBtn"
+    >
+      Попълни анкетата
+      <span>2–3 минути</span>
+    </a>
+  </div>
         <div class="card">
-          <h3>Контакт</h3>
-          <p>
-            Ако имате въпроси: (добавете телефон/мейл или човек за контакт)
-          </p>
+          <h3>Контакти</h3>
           <ul>
-            <li>Телефон: +359 …</li>
-            <li>Имейл: …</li>
+            <li>Телефон на Стайко: +359 88 756 9694</li>
+            <li>Телефон на Тони: +359 886 693 870</li>
+            <li>Имейл: svatbastaikotoni@gmail.com</li>
           </ul>
         </div>
       </div>
     </section>
 
     <footer>
-      © 2026 • Автор • Иван (братът на Стайко) <3
+      © 2026 • Покана сайт • GitHub Pages
     </footer>
 
   </div>
@@ -987,12 +1329,3 @@ palette.forEach((c, i) => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
