@@ -963,6 +963,15 @@ body::after{
   margin:6px 0 0;
   opacity:.85;
 }
+.noteSoft{
+  margin-top:10px;
+  background: transparent;
+  border: none;
+  font-size:13px;
+  opacity:.65;
+  text-align:center;
+}
+
 @keyframes nameGlow{
   0%,100%{
     text-shadow:
@@ -987,6 +996,39 @@ body::after{
     fadeInUp 2.6s ease forwards,
     softGlow 6s ease-in-out infinite;
 }
+/* ===== MAP BETWEEN PROGRAM POINTS ===== */
+.mapItem{
+  list-style:none;
+  margin:18px 0 22px;
+}
+
+.mapFigure{
+  margin:0;
+  text-align:center;
+}
+
+.mapFigure img{
+  width:100%;
+  max-width:420px;
+  border-radius:14px;
+  border:1px solid rgba(218,215,200,.35);
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.04);
+  transition:.3s ease;
+}
+
+.mapFigure img:hover{
+  transform: scale(1.015);
+}
+
+.mapFigure figcaption{
+  margin-top:8px;
+  font-size:13px;
+  opacity:.7;
+  letter-spacing:.04em;
+}
+
 
 
 
@@ -1091,6 +1133,18 @@ body::after{
         </a>
       </li>
             <li>16:00 - Welcome drink - Ривендел - Тук елфите танцуват, хобитите наливат!</li>
+            <li class="mapItem">
+  <figure class="mapFigure">
+    <img
+      src="assets/wedding-map.png"
+      alt="Карта на местата – Ривендел, Гондор и Скокливото пони"
+    >
+    <figcaption>
+      🗺️ Карта на нашето приключение
+    </figcaption>
+  </figure>
+</li>
+
             <li>17:30 - Изнесен ритуал - Гондор - Където Пръстенът е символ, не проблем.</li>
             <li>19:00 - Вечеря - "Скокливото пони" - "Внимавай: тук се пие като за последно приключение."</li>
           </ul>
@@ -1100,6 +1154,10 @@ body::after{
     Носете си удобни обувки и връхни дрехи!
   </p>
 </div>
+<div class="noteBox noteSoft">
+  Информация за настаняването ще получите допълнително.
+</div>
+
 
         </div>
       </div>
@@ -1314,7 +1372,6 @@ palette.forEach((c, i) => {
 </script>
 </body>
 </html>
-
 
 
 
