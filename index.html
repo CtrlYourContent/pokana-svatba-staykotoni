@@ -471,31 +471,44 @@ body::after{
       background:var(--ivory);
       opacity:.9;
     }
-
 .titleSmall{
   font-family: Marcellus, serif;
   font-size: clamp(20px, 2.4vw, 24px);
-  letter-spacing:.14em;
+  letter-spacing:.12em;
   text-transform:uppercase;
   margin-top:8px;
 
-  background: linear-gradient(
-    90deg,
-    #f8f3e8,
-    #e7d8b2,
-    #d4b87a,
-    #e7d8b2,
-    #f8f3e8
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: rgba(255,255,255,.95);
 
   text-shadow:
-    0 2px 8px rgba(0,0,0,.55);
+    0 0 8px rgba(255,255,255,.35),
+    0 2px 8px rgba(0,0,0,.5);
 }
+
+.titleSmall{
+  position:relative;
+}
+
+.titleSmall::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.4),
+    transparent
+  );
+  transform:translateX(-100%);
+  animation: shimmer 6s infinite;
+  pointer-events:none;
+}
+
+@keyframes shimmer{
+  0%{ transform:translateX(-100%); }
+  100%{ transform:translateX(200%); }
+}
+
 
 
 
