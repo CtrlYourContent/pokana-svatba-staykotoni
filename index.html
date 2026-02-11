@@ -473,15 +473,19 @@ body::after{
     }
 
     .titleSmall{
-      font-family: Marcellus, serif;
-      font-size: clamp(18px, 2vw, 22px);
-      letter-spacing:.08em;
-      color: rgba(0,0,0,1);
-      text-transform:uppercase;
-      margin-top:8px;
-      opacity:1;
-      filter: invert(1) grayscale(.2);
-    }
+  font-family: Marcellus, serif;
+  font-size: clamp(20px, 2.4vw, 24px);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-top:8px;
+
+  color: rgba(255,255,255,.95);
+
+  text-shadow:
+    0 0 8px rgba(255,255,255,.35),
+    0 2px 8px rgba(0,0,0,.5);
+}
+
 
 .names{
   position: relative;
@@ -1372,6 +1376,7 @@ palette.forEach((c, i) => {
 </script>
 </body>
 </html>
+
 
 
 
